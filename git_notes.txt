@@ -1,0 +1,13 @@
+git --version
+git config --global user.name "Sherin KJ"
+git config --global user.email kj.sherin@gmail.com
+
+git status
+
+
+//git add fileName_1.extension fileName_2.extension
+//add all files from current directory
+git add .
+or 
+git add --all
+
