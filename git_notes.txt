@@ -12,3 +12,15 @@ or
 git add --all
 
 git commit -m "Projects completed, db handling, layout for guest, login page"
+
+git log
+
+git remote add mycart_github https://github.com/SherinKJ/mycart.git
+
+git remote
+
+git remote -v
+
+git push mycart_github master
+
+git pull mycart_github master
