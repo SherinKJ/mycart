@@ -1,0 +1,55 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="en" layout:decorate="~{layouts/admin}">
+
+<head>
+    <title layout:fragment="title">Administrator</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container">
+            <h2 class="text-center bg-primary rounded p-2 text-white">
+                New Customer <a th:href="@{/admin}" class="btn btn-sm btn-outline-info ms-5">Home</a>
+            </h2>
+            <form action="" method="post">
+                <div class="form-floating mb-3">
+                    <input type="text" name="name" class="form-control" placeholder="" required="required">
+                    <label>Name</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" name="place" class="form-control" placeholder="" required="required">
+                    <label>Place</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" name="userName" class="form-control" placeholder="" required="required">
+                    <label>User
+                        Name</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="password" name="password" class="form-control" value="1234" placeholder=""
+                        required="required"> <label>Password</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <select name="userType" class="form-control" required="required">
+                        <option value="">-- Select User Type --</option>
+                        <option value="admin">Administrator</option>
+                        <option value="customer">Customer</option>
+                    </select> <label>User Type</label>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                        <button class="btn btn-outline-success form-control">Save</button>
+                    </div>
+                </div>
+                <div th:text="${msg}" th:class="${msg!=null} ? @{'alert alert-success p-2 text-center'} : _"></div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

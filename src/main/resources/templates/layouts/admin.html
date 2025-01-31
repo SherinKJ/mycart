@@ -6,7 +6,7 @@
 
 <body>
     <div layout:fragment="script">
-        <script th:inline="javascript" th:if="${#ctx.session.utype != 'admin'}">
+        <script th:inline="javascript" th:if="${session.utype != 'admin'}">
             window.location.href = '/login'
         </script>
     </div>
@@ -37,7 +37,9 @@
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
-                        <a class="dropdown-item" href="/logout"> <span th:text="${#ctx.session.name}"></span> Logout
+                        <a class="dropdown-item" href="/logout"> 
+                            <span  th:text="${session.name}"></span> 
+                                Logout
                         </a>
                     </form>
                 </div>

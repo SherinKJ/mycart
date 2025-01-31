@@ -1,0 +1,37 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="en" layout:decorate="~{layouts/admin}">
+
+<head>
+    <title layout:fragment="title">Administrator</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container">
+            <h2 class="text-center bg-danger rounded p-2 text-white">
+                Delete this Customer ? <a th:href="@{/admin}" class="btn btn-sm btn-outline-info ms-5">Home</a>
+            </h2>
+            <form action="" method="post">
+                <div class="form-floating mb-3">
+                    <input type="text" name="name" th:value="${cust.getName()}" class="form-control" placeholder=""
+                        disabled="disabled">
+                    <label>Name</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" name="place" th:value="${cust.getPlace()}" class="form-control" placeholder=""
+                        disabled="disabled">
+                    <label>Place</label>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                        <button class="btn btn-outline-danger form-control">Delete</button>
+                    </div>
+                </div>
+                <div th:text="${msg}" th:class="${msg!=null} ? @{'alert alert-warning p-2 text-center'} : _"></div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
