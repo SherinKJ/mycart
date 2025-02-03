@@ -23,13 +23,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="u : ${data}">
-                    <th th:text="${u.id}"></th>
+                <tr th:each="u,i : ${data}">
+                    <!-- <th th:text="${i.index}"></th> -->
+                    <th th:text="${i.count}"></th>
                     <th th:text="${u.name}"></th>
                     <th th:text="${u.userName}"></th>
                     <th th:text="${u.userType}"></th>
                     <th>
-                        <a th:href="@{/admin/edit(id=${u.id})}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
+                        <a th:href="@{/admin/edit/{id}(id=${u.id})}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
                         <a th:href="@{/admin/delete(id=${u.id})}" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i> Delete</a>
                     </th>
                 </tr>

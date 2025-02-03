@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -43,9 +44,25 @@ public class AdminController {
         return "/admin/delete";
     }
 
-    @GetMapping("/edit")
-    public String edit() {
+    @GetMapping("/edit/{id}")
+    public String edit(Model model, @PathVariable Long id) {
+        Customer c = service.read(id);
+        model.addAttribute("cust", c);
+        model.addAttribute("msg", "");
         return "/admin/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editSave(@ModelAttribute Customer customer, Model model, @PathVariable Long id) {
+        customer.setId(id);
+        Customer cus = service.update(id, customer);
+        if (cus == null) {
+            model.addAttribute("msg", "Invalid id ?");
+        } else {
+            model.addAttribute("msg", cus.getName() + " Updated !");
+        }
+        model.addAttribute("cust", customer);
+        return "admin/edit";
     }
 
     @Autowired
