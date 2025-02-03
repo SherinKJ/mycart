@@ -7,6 +7,39 @@
 <body>
     <div layout:fragment="content">
         <h1>Admin Home</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="5" class="text-end">
+                        <a th:href="@{/admin/create}" class="btn btn-primary btn-sm"><i class="bi bi-person-plus-fill"></i> New User</a>
+                    </th>
+                </tr>
+                <tr>
+                    <th>Sl.No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Type</th>
+                    <th>Modify</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="u : ${data}">
+                    <th th:text="${u.id}"></th>
+                    <th th:text="${u.name}"></th>
+                    <th th:text="${u.userName}"></th>
+                    <th th:text="${u.userType}"></th>
+                    <th>
+                        <a th:href="@{/admin/edit(id=${u.id})}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
+                        <a th:href="@{/admin/delete(id=${u.id})}" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i> Delete</a>
+                    </th>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="text-end">User details</td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
 </body>
 
