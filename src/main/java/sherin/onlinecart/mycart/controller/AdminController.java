@@ -39,8 +39,11 @@ public class AdminController {
         return "/admin/create";
     }
 
-    @GetMapping("/delete")
-    public String delete() {
+    @GetMapping("/delete/{id}")
+    public String delete(Model model, @PathVariable Long id) {
+        Customer c = service.read(id);
+        model.addAttribute("cust", c);
+        model.addAttribute("msg", "");
         return "/admin/delete";
     }
 
@@ -63,6 +66,17 @@ public class AdminController {
         }
         model.addAttribute("cust", customer);
         return "admin/edit";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteMe(Model model, @PathVariable Long id) {
+        Customer cus = service.delete(id);
+        if (cus == null) {
+            model.addAttribute("msg", "Invalid id ?");
+        } else {
+            return "redirect:/admin";
+        }
+        return "admin/delete";
     }
 
     @Autowired

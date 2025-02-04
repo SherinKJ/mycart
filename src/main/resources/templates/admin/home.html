@@ -31,7 +31,7 @@
                     <th th:text="${u.userType}"></th>
                     <th>
                         <a th:href="@{/admin/edit/{id}(id=${u.id})}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
-                        <a th:href="@{/admin/delete(id=${u.id})}" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i> Delete</a>
+                        <a th:href="@{/admin/delete/{id}(id=${u.id})}" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i> Delete</a>
                     </th>
                 </tr>
             </tbody>
