@@ -14,6 +14,7 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public Customer create(Customer customer) {
+        customer.setPassword(passwordService.hashPassword(customer.getPassword())); // Hash password
         return repository.save(customer);
     }
 
@@ -52,13 +53,20 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public Customer loginCheck(String userName, String password) {
-        List<Customer> cus = repository.login(userName, password);
+        List<Customer> cus = repository.findByUserName(userName);
+        System.out.println(cus);
         if (cus.isEmpty()) {
             return null;
         }
-        return cus.getFirst();
+        Customer customer = cus.getFirst();
+        if (passwordService.verifyPassword(password, customer.getPassword())) {
+            return cus.getFirst();
+        }
+        return null;
     }
 
     @Autowired
     private CustomerRepository repository;
+    @Autowired
+    private PasswordService passwordService;
 }

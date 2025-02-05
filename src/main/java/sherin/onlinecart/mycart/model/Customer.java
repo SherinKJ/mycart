@@ -1,5 +1,8 @@
 package sherin.onlinecart.mycart.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,12 +14,15 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 100, nullable = false) // Limit name to 100 characters
     private String name;
+    @Column(length = 50, unique = true, nullable = false) // Limit username to 50 characters, ensure uniqueness
     private String userName;
+    @JsonIgnore // Prevent exposing password in API responses
+    @Column(length = 255, nullable = false) // Store hashed passwords, typically long
     private String password;
+    @Column(length = 20, nullable = false) // Limit user type to 20 characters (e.g., "admin", "user")
     private String userType;
-    // @Version
-    // private Integer version;
 
     public Customer() {
     }
@@ -68,13 +74,5 @@ public class Customer {
     public void setUserType(String userType) {
         this.userType = userType;
     }
-
-    // public Integer getVersion() {
-    // return version;
-    // }
-
-    // public void setVersion(Integer version) {
-    // this.version = version;
-    // }
 
 }
